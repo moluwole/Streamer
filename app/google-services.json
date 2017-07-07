@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "185924451400",
+    "firebase_url": "https://streamer-64e66.firebaseio.com",
+    "project_id": "streamer-64e66",
+    "storage_bucket": "streamer-64e66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:185924451400:android:e969097b18a6fcdb",
+        "android_client_info": {
+          "package_name": "com.example.yung.streamer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "185924451400-38c0d2725g5j35ovqipf1vknqjioml2d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.yung.streamer",
+            "certificate_hash": "37f7ce03b8b75cd2075faef815900777a761d28c"
+          }
+        },
+        {
+          "client_id": "185924451400-373k030qp9hnqtfbt0edtc0bb88q8b9t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJU9wERC6HObdQ_HnUD7afAnJGemHFS2c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "185924451400-373k030qp9hnqtfbt0edtc0bb88q8b9t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
