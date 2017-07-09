@@ -14,11 +14,12 @@ class Splash : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        var currentUser = FirebaseAuth.getInstance().currentUser
+        val currentUser = FirebaseAuth.getInstance().currentUser
 
         if(currentUser == null){    initial_intent = Intent(this, Login::class.java)  }
         else{  initial_intent = Intent(this,Home::class.java)   }
 
         startActivity(initial_intent)
+        finish()
     }
 }
