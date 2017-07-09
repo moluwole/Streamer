@@ -26,6 +26,11 @@ import android.Manifest.permission.READ_CONTACTS
 import android.content.Intent
 import android.support.annotation.NonNull
 import android.widget.Toast
+import com.google.android.gms.auth.api.Auth
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.auth.api.signin.GoogleSignInResult
+import com.google.android.gms.common.SignInButton
+import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
@@ -41,8 +46,8 @@ class Login : AppCompatActivity(), LoaderCallbacks<Cursor> {
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
-    //private var mAuthTask: UserLoginTask? = null
-   // private var mAuth: FirebaseAuth? = null
+
+    private val RC_SIGN_IN = 9001
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,11 +62,45 @@ class Login : AppCompatActivity(), LoaderCallbacks<Cursor> {
             false
         })
 
+        //Sign In Button
         email_sign_in_button.setOnClickListener { attemptLogin() }
 
+        //Create Account Button
         link_reg.setOnClickListener{ _->
-            var reg_intent = Intent(this, Register::class.java)
+            val reg_intent = Intent(this, Register::class.java)
             startActivity(reg_intent)
+        }
+
+        /*
+        //Google Sign In Params
+        var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        gso.requestEmail().build()
+        var mGoogleApiClient = GoogleApiClient.Builder(this).addApi(Auth.GOOGLE_SIGN_IN_API, gso).build()
+
+        //Google Sign In Button
+        google_sign_in_button.setSize(SignInButton.SIZE_STANDARD)
+        google_sign_in_button.setOnClickListener{
+            signIn(mGoogleApiClient)
+        }
+        */
+    }
+
+    /*
+    //Google Sign In Function
+    fun signIn(api_client: GoogleApiClient){
+        var signInIntent = Auth.GoogleSignInApi.getSignInIntent(api_client)
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+    */
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == RC_SIGN_IN) {
+            val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
+            if (result.isSuccess) {
+                val home_intent = Intent(this, Home::class.java)
+                startActivity(home_intent)
+            }
         }
     }
 
@@ -153,11 +192,11 @@ class Login : AppCompatActivity(), LoaderCallbacks<Cursor> {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true)
-            var mAuth: FirebaseAuth = FirebaseAuth.getInstance()
+            val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
             mAuth.signInWithEmailAndPassword(emailStr, passwordStr).addOnCompleteListener{task: Task<AuthResult> ->
                 if(task.isSuccessful){
                     showProgress(false)
-                    var intent = Intent(this, Home::class.java)
+                    val intent = Intent(this, Home::class.java)
                     startActivity(intent)
                 }
                 else{
