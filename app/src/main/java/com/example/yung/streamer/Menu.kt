@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import kotlinx.android.synthetic.main.activity_home.*
 
 
 /**
@@ -22,7 +24,20 @@ class Menu : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_menu, container, false)
+        // return inflater!!.inflate(R.layout.fragment_menu, container, false)
+        var rootview = inflater?.inflate(R.layout.fragment_menu, container, false)
+
+        var menu_search = rootview?.findViewById(R.id.menu_search) as Button
+        menu_search.setOnClickListener {
+            val fragment_search = Search()
+            val fragment_manager = fragmentManager
+            if (home_container != null) {
+                fragment_manager.beginTransaction().add(R.id.fragment_container, fragment_search).commit()
+            } else {
+                fragment_manager.beginTransaction().replace(R.id.fragment_container, fragment_search).commit()
+            }
+        }
+        return rootview
     }
 
 

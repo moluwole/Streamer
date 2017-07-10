@@ -9,7 +9,7 @@ android {
     buildToolsVersion "26.0.0"
     defaultConfig {
         applicationId "com.example.yung.streamer"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -42,6 +42,8 @@ dependencies {
     implementation 'com.android.support:support-v4:25.4.0'
     implementation 'com.google.android.gms:play-services-auth:11.0.2'
     implementation 'com.google.apis:google-api-services-youtube:v3-rev183-1.22.0'
+    implementation 'com.squareup.picasso:picasso:2.5.0'
+    implementation 'com.github.PierfrancescoSoffritti:AndroidYouTubePlayer:0.7.2'
 }
 
 configurations {

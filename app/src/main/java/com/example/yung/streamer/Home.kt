@@ -37,7 +37,8 @@ class Home : AppCompatActivity() {
             fragment_manager.beginTransaction().replace(R.id.fragment_container, fragment_menu).commit()
         }
 
-        //Search Youtube Videos
+        //Load the Menus
+
 
     }
 }

@@ -12,8 +12,8 @@
 
     <ImageView
         android:id="@+id/video_thumbnail"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:scaleType="fitCenter"
         android:src="@drawable/password" />
 
@@ -26,25 +26,7 @@
         android:paddingEnd="8dp"
         android:paddingLeft="8dp"
         android:paddingStart="8dp"
-        android:textSize="14sp" />
+        android:textSize="17sp" />
 
-    <TextView
-        android:id="@+id/video_author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/video_title"
-        android:textStyle="italic" />
-
-
-    <TextView
-        android:id="@+id/video_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/video_title"
-        android:layout_below="@id/video_title"
-        android:paddingEnd="8dp"
-        android:paddingLeft="8dp"
-        android:paddingStart="8dp"
-        android:textSize="14sp" />
 
 </RelativeLayout>

@@ -6,62 +6,65 @@
 
 
     <GridLayout
+        android:id="@+id/layout_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layoutMode="clipBounds"
-        android:id="@+id/layout_menu"
+        android:layout_marginBottom="60dp"
         android:columnCount="2"
         android:rowCount="2"
-        android:layout_marginBottom="60dp"
         >
         <Button
-            android:layout_height="wrap_content"
+            android:id="@+id/menu_search"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_margin="15dp"
             android:layout_row="0"
+            android:layout_rowWeight="1"
+            android:minWidth="150sp"
             android:text="Search Videos"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:layout_margin="15dp"
-            android:minWidth="150sp"
             />
 
         <Button
-            android:layout_height="wrap_content"
+            android:id="@+id/menu_live"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_column="1"
-            android:layout_row="0"
             android:layout_columnSpan="1"
-            android:layout_rowSpan="1"
-            android:minWidth="150sp"
-            android:layout_margin="15dp"
-            android:text="Start LiveStream"
             android:layout_columnWeight="1"
+            android:layout_margin="15dp"
+            android:layout_row="0"
+            android:layout_rowSpan="1"
             android:layout_rowWeight="1"
+            android:minWidth="150sp"
+            android:text="Start LiveStream"
             />
 
         <Button
-            android:layout_height="wrap_content"
+            android:id="@+id/menu_view"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_margin="15dp"
             android:layout_row="1"
+            android:layout_rowWeight="1"
             android:minWidth="150sp"
             android:text="View Saved Videos"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:layout_margin="15dp"
             />
 
         <Button
-            android:layout_height="wrap_content"
+            android:id="@+id/menu_logout"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_column="1"
-            android:layout_rowSpan="1"
-            android:text="Logout"
-            android:layout_margin="15dp"
             android:layout_columnWeight="1"
+            android:layout_margin="15dp"
+            android:layout_rowSpan="1"
             android:layout_rowWeight="1"
             android:minWidth="150sp"
+            android:text="Logout"
             />
 
     </GridLayout>

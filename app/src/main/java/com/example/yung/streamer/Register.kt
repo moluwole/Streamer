@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.text.TextUtils
 import android.view.View
+import android.widget.Toast
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -75,6 +76,7 @@ class Register : AppCompatActivity() {
                         showProgress(false)
                         Snackbar.make(register_container, "Registration Successful", Snackbar.LENGTH_LONG).show()
                         var home_intent = Intent(this, Home::class.java)
+
                         startActivity(home_intent)
                     }
                     else{
