@@ -2,6 +2,7 @@ package com.example.yung.streamer
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -22,6 +23,12 @@ class Home : AppCompatActivity() {
         false
     }
 
+    fun switchContent(id: Int, fragment: Fragment) {
+        val ft = supportFragmentManager.beginTransaction()
+        ft.replace(id, fragment, fragment.toString())
+        ft.addToBackStack(null)
+        ft.commit()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -30,6 +37,7 @@ class Home : AppCompatActivity() {
 
         val fragment_menu = Menu()
         val fragment_manager = supportFragmentManager
+
         if(home_container == null){
             fragment_manager.beginTransaction().add(R.id.fragment_container, fragment_menu).commit()
         }

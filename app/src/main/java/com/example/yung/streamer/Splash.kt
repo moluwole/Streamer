@@ -6,8 +6,6 @@ import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
 
 class Splash : AppCompatActivity() {
-
-    private val SPLASH_TIMER = 3000
     private var initial_intent: Intent? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
