@@ -70,28 +70,7 @@ class Login : AppCompatActivity(), LoaderCallbacks<Cursor> {
             val reg_intent = Intent(this, Register::class.java)
             startActivity(reg_intent)
         }
-
-        /*
-        //Google Sign In Params
-        var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        gso.requestEmail().build()
-        var mGoogleApiClient = GoogleApiClient.Builder(this).addApi(Auth.GOOGLE_SIGN_IN_API, gso).build()
-
-        //Google Sign In Button
-        google_sign_in_button.setSize(SignInButton.SIZE_STANDARD)
-        google_sign_in_button.setOnClickListener{
-            signIn(mGoogleApiClient)
-        }
-        */
     }
-
-    /*
-    //Google Sign In Function
-    fun signIn(api_client: GoogleApiClient){
-        var signInIntent = Auth.GoogleSignInApi.getSignInIntent(api_client)
-        startActivityForResult(signInIntent, RC_SIGN_IN)
-    }
-    */
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

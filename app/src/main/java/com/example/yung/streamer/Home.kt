@@ -11,7 +11,7 @@ class Home : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                return@OnNavigationItemSelectedListener true
+                loadMenu()
             }
             R.id.navigation_dashboard -> {
                 return@OnNavigationItemSelectedListener true
@@ -29,12 +29,8 @@ class Home : AppCompatActivity() {
         ft.addToBackStack(null)
         ft.commit()
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
 
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-
+    fun loadMenu() {
         val fragment_menu = Menu()
         val fragment_manager = supportFragmentManager
 
@@ -44,6 +40,15 @@ class Home : AppCompatActivity() {
         else{
             fragment_manager.beginTransaction().replace(R.id.fragment_container, fragment_menu).commit()
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_home)
+
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        loadMenu()
 
         //Load the Menus
 

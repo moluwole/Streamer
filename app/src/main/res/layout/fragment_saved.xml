@@ -1,0 +1,13 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.yung.streamer.Saved">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/saved_videos_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"></android.support.v7.widget.RecyclerView>
+
+</FrameLayout>

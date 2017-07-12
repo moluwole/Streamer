@@ -56,6 +56,7 @@ class DataAdapter constructor(mList: List<SearchResult>?, frag_manager: Fragment
 
             var intent = Intent(app_context as Home, Play::class.java)
             intent.putExtra("Video ID", video_id)
+            intent.putExtra("Video Title", video_data?.snippet?.title)
 
             app_context?.startActivity(intent)
         }

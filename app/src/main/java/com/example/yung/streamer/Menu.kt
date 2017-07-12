@@ -37,6 +37,17 @@ class Menu : Fragment() {
                 fragment_manager.beginTransaction().replace(R.id.fragment_container, fragment_search).commit()
             }
         }
+
+        var menu_view = rootview.findViewById(R.id.menu_view) as Button
+        menu_view.setOnClickListener {
+            val fragment_view = Saved()
+            val fragment_manager = fragmentManager
+            if (home_container != null) {
+                fragment_manager.beginTransaction().replace(R.id.fragment_container, fragment_view).commit()
+            } else {
+                fragment_manager.beginTransaction().replace(R.id.fragment_container, fragment_view).commit()
+            }
+        }
         return rootview
     }
 

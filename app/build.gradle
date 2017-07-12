@@ -44,11 +44,14 @@ dependencies {
     implementation 'com.google.apis:google-api-services-youtube:v3-rev183-1.22.0'
     implementation 'com.squareup.picasso:picasso:2.5.0'
     implementation 'com.github.PierfrancescoSoffritti:AndroidYouTubePlayer:0.7.2'
+    implementation 'com.github.HaarigerHarald:android-youtubeExtractor:master-SNAPSHOT'
+    implementation 'com.tonyodev.fetch:fetch:1.1.2'
 }
 
 configurations {
     compile.exclude group: "org.apache.httpcomponents", module: "httpclient"
 }
+
 
 
 
