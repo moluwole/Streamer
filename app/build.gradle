@@ -46,11 +46,21 @@ dependencies {
     implementation 'com.github.PierfrancescoSoffritti:AndroidYouTubePlayer:0.7.2'
     implementation 'com.github.HaarigerHarald:android-youtubeExtractor:master-SNAPSHOT'
     implementation 'com.tonyodev.fetch:fetch:1.1.2'
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.1'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+    testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+
+
+    implementation 'com.google.android.exoplayer:exoplayer:r1.5.16'
+
 }
 
 configurations {
     compile.exclude group: "org.apache.httpcomponents", module: "httpclient"
 }
+
+
 
 
 

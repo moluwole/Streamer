@@ -1,35 +1,29 @@
 package com.example.yung.streamer
 
 import android.Manifest
-import android.annotation.SuppressLint
-import android.app.DownloadManager
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.AsyncTask
 import android.os.Build
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.support.design.widget.Snackbar
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import com.pierfrancescosoffritti.youtubeplayer.AbstractYouTubeListener
-import com.pierfrancescosoffritti.youtubeplayer.YouTubePlayerView
 import android.util.SparseArray
 import at.huber.youtubeExtractor.VideoMeta
 import at.huber.youtubeExtractor.YouTubeExtractor
 import at.huber.youtubeExtractor.YtFile
+import com.pierfrancescosoffritti.youtubeplayer.AbstractYouTubeListener
+import com.pierfrancescosoffritti.youtubeplayer.YouTubePlayerView
+import com.squareup.leakcanary.LeakCanary
 import com.tonyodev.fetch.Fetch
 import com.tonyodev.fetch.request.Request
 import kotlinx.android.synthetic.main.activity_play.*
-import kotlinx.android.synthetic.main.item_list.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
-import kotlin.coroutines.experimental.EmptyCoroutineContext.plus
 
 
 class Play : AppCompatActivity() {
@@ -37,7 +31,7 @@ class Play : AppCompatActivity() {
     fun filePath(): String {
         var return_value = ""
         if (isStorageAvailable()) {
-            var file: File = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).path.toString(), ".streamer")
+            val file: File = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).path.toString(), ".streamer")
             if (!file.exists()) file.mkdir()
             return_value = file.toString()
             Log.d("File Path", file.toString())
@@ -48,7 +42,7 @@ class Play : AppCompatActivity() {
     }
 
     fun isStorageAvailable(): Boolean {
-        var state = Environment.getExternalStorageState()
+        val state = Environment.getExternalStorageState()
         return state == Environment.MEDIA_MOUNTED
     }
 
@@ -91,8 +85,14 @@ class Play : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_play)
 
-        var video_id = intent.getStringExtra("Video ID")
-        var video_name = intent.getStringExtra("Video Title") + ".mp4"
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return
+        }
+        LeakCanary.install(application)
+        val video_id = intent.getStringExtra("Video ID")
+        val video_name = intent.getStringExtra("Video Title") + ".mp4"
 
         reqPermisson()
 
@@ -107,8 +107,6 @@ class Play : AppCompatActivity() {
         val youtubeLink = "http://youtube.com/watch?v=" + video_id
         var downloadUrl: String
 
-        //@SuppressLint("StaticFieldLeak")
-        //@SuppressLint("StaticFieldLeak")
         object : YouTubeExtractor(this) {
             public override fun onExtractionComplete(ytFiles: SparseArray<YtFile>?, vMeta: VideoMeta) {
                 if (ytFiles != null) {
@@ -117,7 +115,7 @@ class Play : AppCompatActivity() {
                     Log.d("URL: ", downloadUrl)
                     try {
                         // var test_path = "/storage/sdcard0/streamer"
-                        var test_path = filePath()
+                        val test_path = filePath()
                         if (test_path != "") {
                             filepath = filePath()
                             if (reqPermisson()) {
@@ -127,8 +125,8 @@ class Play : AppCompatActivity() {
                                 //Log.d("Make Dir", req.toString())
                                 fetch = Fetch.getInstance(applicationContext)
                                 //  var file_path = filePath()
-                                var request = Request(downloadUrl, filepath, video_name)
-                                var downloadId = fetch?.enqueue(request)
+                                val request = Request(downloadUrl, filepath, video_name)
+                                val downloadId = fetch?.enqueue(request)
                                 Log.d("download ID", downloadId.toString())
                                 Log.d("Request", request.toString())
 
@@ -138,9 +136,6 @@ class Play : AppCompatActivity() {
                                     Snackbar.make(youtube_player_view, "Downloading Video Offline...", Snackbar.LENGTH_LONG).show()
                                 }
 
-
-                                var file_path = filePath() + "/" + video_name
-                                //downloadVideo(downloadUrl, file_path)
                             } else {
                                 Snackbar.make(youtube_player_view, "Could not gain access to Storage", Snackbar.LENGTH_LONG).show()
                             }

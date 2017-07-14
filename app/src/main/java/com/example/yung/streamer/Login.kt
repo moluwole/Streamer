@@ -1,43 +1,35 @@
 package com.example.yung.streamer
 
+import android.Manifest.permission.READ_CONTACTS
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.annotation.SuppressLint
 import android.annotation.TargetApi
-import android.content.pm.PackageManager
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import android.app.LoaderManager.LoaderCallbacks
+import android.content.Context
 import android.content.CursorLoader
+import android.content.Intent
 import android.content.Loader
+import android.content.pm.PackageManager
 import android.database.Cursor
 import android.net.Uri
-import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.support.design.widget.Snackbar
+import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.TextView
-
-import java.util.ArrayList
-import android.Manifest.permission.READ_CONTACTS
-import android.content.Intent
-import android.support.annotation.NonNull
-import android.widget.Toast
 import com.google.android.gms.auth.api.Auth
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.auth.api.signin.GoogleSignInResult
-import com.google.android.gms.common.SignInButton
-import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-
 import kotlinx.android.synthetic.main.activity_login.*
+import java.util.*
 
 /**
  * A login screen that offers login via email/password.
@@ -63,7 +55,16 @@ class Login : AppCompatActivity(), LoaderCallbacks<Cursor> {
         })
 
         //Sign In Button
-        email_sign_in_button.setOnClickListener { attemptLogin() }
+        email_sign_in_button.setOnClickListener {
+            attemptLogin()
+            try {
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+            } catch (e: Exception) {
+
+            }
+
+        }
 
         //Create Account Button
         link_reg.setOnClickListener{ _->
@@ -120,6 +121,9 @@ class Login : AppCompatActivity(), LoaderCallbacks<Cursor> {
         }
     }
 
+    override fun onBackPressed() {
+        finish()
+    }
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -177,6 +181,8 @@ class Login : AppCompatActivity(), LoaderCallbacks<Cursor> {
                     showProgress(false)
                     val intent = Intent(this, Home::class.java)
                     startActivity(intent)
+
+                    finish()
                 }
                 else{
                     showProgress(false)
@@ -200,6 +206,7 @@ class Login : AppCompatActivity(), LoaderCallbacks<Cursor> {
     /**
      * Shows the progress UI and hides the login form.
      */
+    @SuppressLint("ObsoleteSdkInt")
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private fun showProgress(show: Boolean) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
