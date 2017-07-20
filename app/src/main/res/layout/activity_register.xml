@@ -41,9 +41,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:foreground="@color/colorWhite"
                 android:hint="Email Address"
                 android:inputType="textEmailAddress"
                 android:padding="10dp"
+                android:singleLine="true"
                 android:textSize="20sp"
                 android:textStyle="normal"
                 />
@@ -61,8 +63,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:foreground="@color/colorWhite"
                 android:hint="Password"
                 android:padding="10dp"
+                android:singleLine="true"
                 android:textSize="20sp"
                 />
         </android.support.design.widget.TextInputLayout>
@@ -79,8 +83,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:foreground="@color/colorWhite"
                 android:hint="Confirm Password"
                 android:padding="10dp"
+                android:singleLine="true"
                 android:textSize="20sp"
                 />
         </android.support.design.widget.TextInputLayout>

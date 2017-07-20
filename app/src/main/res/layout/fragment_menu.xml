@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="60dp"
+    android:layout_marginTop="40dp"
     android:columnCount="2"
     android:rowCount="2"
     tools:context="com.example.yung.streamer.Menu">
@@ -17,9 +18,12 @@
             android:layout_margin="15dp"
             android:layout_row="0"
             android:layout_rowWeight="1"
+            android:background="@color/colorPrimary"
+            android:drawableTop="@drawable/ic_youtube_searched_for_black"
             android:minWidth="150sp"
-            android:padding="20dp"
+            android:padding="30dp"
             android:text="Search Videos"
+            android:textColor="#fff"
             />
 
 
@@ -34,8 +38,12 @@
             android:layout_row="0"
             android:layout_rowSpan="1"
             android:layout_rowWeight="1"
+            android:background="@color/colorPrimary"
+            android:drawableTop="@drawable/ic_video_library_black"
             android:minWidth="150sp"
+            android:padding="30dp"
             android:text="Saved Videos"
+            android:textColor="#fff"
             />
 
         <Button
@@ -49,9 +57,12 @@
             android:layout_row="1"
             android:layout_rowSpan="1"
             android:layout_rowWeight="1"
+            android:background="@color/colorPrimary"
+            android:drawableTop="@drawable/ic_cancel_black"
             android:minWidth="150sp"
-            android:padding="20dp"
+            android:padding="30dp"
             android:text="Delete All"
+            android:textColor="#fff"
             />
 
         <Button
@@ -63,8 +74,11 @@
             android:layout_margin="15dp"
             android:layout_rowSpan="1"
             android:layout_rowWeight="1"
+            android:background="@color/colorPrimary"
+            android:drawableTop="@drawable/ic_account_box_black"
             android:minWidth="150sp"
-            android:padding="20dp"
+            android:padding="30dp"
             android:text="Logout"
+            android:textColor="#fff"
             />
 </GridLayout>
