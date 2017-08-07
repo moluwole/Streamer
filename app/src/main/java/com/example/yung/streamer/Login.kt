@@ -20,10 +20,8 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
-import android.widget.TextView
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
@@ -46,13 +44,13 @@ class Login : AppCompatActivity(), LoaderCallbacks<Cursor> {
         setContentView(R.layout.activity_login)
         // Set up the login form.
         populateAutoComplete()
-        password.setOnEditorActionListener(TextView.OnEditorActionListener { _, id, _ ->
-            if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                attemptLogin()
-                return@OnEditorActionListener true
-            }
-            false
-        })
+        /* password.setOnEditorActionListener(TextView.OnEditorActionListener { _, id, _ ->
+             if (id == R.id.login || id == EditorInfo.IME_NULL) {
+                 attemptLogin()
+                 return@OnEditorActionListener true
+             }
+             false
+         })*/
 
         //Sign In Button
         email_sign_in_button.setOnClickListener {
