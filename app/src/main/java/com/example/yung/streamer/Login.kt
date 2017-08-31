@@ -120,6 +120,7 @@ class Login : AppCompatActivity(), LoaderCallbacks<Cursor> {
     }
 
     override fun onBackPressed() {
+        moveTaskToBack(true)
         finish()
     }
 
