@@ -50,7 +50,7 @@ class Menu : Fragment() {
             val file: File = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).path.toString(), ".streamer")
             val directory = file
             val files = directory.listFiles()
-            if (files.count() != 0) {
+            if (files == null || files.count() != 0) {
                 if (home_container != null) {
                     fragment_manager.beginTransaction().replace(R.id.fragment_container, fragment_view).commit()
                 } else {

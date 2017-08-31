@@ -3,13 +3,16 @@ package com.example.yung.streamer
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.media.ThumbnailUtils
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
+import android.provider.MediaStore
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import java.io.File
 
@@ -36,9 +39,13 @@ class SaveAdapter constructor(mList: ArrayList<String>?) : RecyclerView.Adapter<
     override fun onBindViewHolder(holder: SaveView, position: Int) {
         holder.saved_video.text = mList?.get(position)
         val video_name = mList?.get(position)
+        val file: File = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).path.toString(), ".streamer/" + video_name)
+        val bMap = ThumbnailUtils.createVideoThumbnail(file.toString(), MediaStore.Video.Thumbnails.FULL_SCREEN_KIND)
+
+        holder.saved_image.setImageBitmap(bMap)
 
         holder.saved_video.setOnClickListener {
-            val file: File = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).path.toString(), ".streamer/" + video_name)
+            //            val file: File = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).path.toString(), ".streamer/" + video_name)
 
             val intent = Intent(app_context as Home, OfflinePlay::class.java)
             intent.putExtra("File", Uri.fromFile(file).toString())
@@ -61,6 +68,8 @@ class SaveAdapter constructor(mList: ArrayList<String>?) : RecyclerView.Adapter<
                         val file: File = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).path.toString(), ".streamer/" + video_name)
                         file.delete()
                         mList?.removeAt(position)
+                        notifyItemRemoved(position)
+                        notifyDataSetChanged()
                     }
                     ?.setNegativeButton(android.R.string.no) { _, _ ->
                         // do nothing
@@ -78,5 +87,6 @@ class SaveAdapter constructor(mList: ArrayList<String>?) : RecyclerView.Adapter<
 
     class SaveView(layoutView: View) : RecyclerView.ViewHolder(layoutView) {
         var saved_video = layoutView.findViewById(R.id.saved_videos_title) as TextView
+        var saved_image = layoutView.findViewById(R.id.saved_video_thumbnail) as ImageView
     }
 }

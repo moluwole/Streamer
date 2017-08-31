@@ -5,10 +5,21 @@
     android:orientation="vertical"
     android:padding="10dp">
 
+    <ImageView
+        android:id="@+id/saved_video_thumbnail"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/password" />
+
     <TextView
         android:id="@+id/saved_videos_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@+id/saved_video_thumbnail"
         android:fontFamily="sans-serif-medium"
         android:padding="10dp"
         android:textSize="17sp" />
